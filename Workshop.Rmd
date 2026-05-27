@@ -527,7 +527,7 @@ usethis::git_sitrep()
 ```{r git to github setup}
 library(usethis)
 use_git_config(user.name = "Paule Mathieu", user.email = "paule.mathieu@my.jcu.edu.au")
-# Token: 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
+# Token: check your phone
 ```
 
 ```{r tracking your own project}
