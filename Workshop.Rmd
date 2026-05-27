@@ -241,7 +241,7 @@ library (ggplot2)
 
 ```{r sourcing workshop_01, eval=FALSE, include=FALSE}
 #Execute workshop 01 script
-source("F:/Paule/MB5370/Module_01/Module_01.R")
+source("Module_01.R")
 ```
 
 -----
@@ -533,6 +533,7 @@ use_git_config(user.name = "Paule Mathieu", user.email = "paule.mathieu@my.jcu.e
 ```{r tracking your own project}
 usethis::use_git()
 usethis::use_github()
+
 ```
 
  
