@@ -47,3 +47,23 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Files to ignore
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+
+# Extensions to ignore
+*.html
+*.png
+*.jpg
+*.jpeg
+*.eps
+*.pdf
+*.bmp
+*.svg
+*.tiff
+*.Rproj
+.quarto
