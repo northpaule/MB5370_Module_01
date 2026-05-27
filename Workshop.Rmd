@@ -5,11 +5,6 @@ date: "2026-05-27"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 # Setting up
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -519,20 +514,20 @@ Template for general ggplot2:
 #in terminal: "which git" allows you to verify that Git is installed on your device
 
 #install.packages("usethis")
-credentials::git_credential_ask()
-usethis::git_sitrep()
+#credentials::git_credential_ask()
+#usethis::git_sitrep()
 #these allow us to check that our Git is linked to our GitHub, it should prompt us to log in using our username and password
 ```
 
 ```{r git to github setup}
 library(usethis)
-use_git_config(user.name = "Paule Mathieu", user.email = "paule.mathieu@my.jcu.edu.au")
+#use_git_config(user.name = "Paule Mathieu", user.email = "paule.mathieu@my.jcu.edu.au")
 # Token: check your phone
 ```
 
 ```{r tracking your own project}
-usethis::use_git()
-usethis::use_github()
+#usethis::use_git()
+#usethis::use_github()
 
 ```
 
