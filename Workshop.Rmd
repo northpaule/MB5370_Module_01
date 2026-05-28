@@ -71,7 +71,7 @@ floor(years_old) # rounds down
 years_old <- 25.765
 round (years_old, 2) # comma after the object to specify argument
 
-?round # go to help
+#?round # go to help
 
 #Create objects
 name <- "Gary"
@@ -295,8 +295,8 @@ ggplot(data = mpg) +
 # Facet and panel plots
 This allows you to break up complex plots to make them more accessible to readers.
  
- Tip: To facet your plot using a single variable, use facet_wrap(). Facet wrap syntax is in the function of a formula (kind of like a linear model formula), where the ~ dictates which variable you want to subset your data with. 
-Note: only use facet_wrap() for discrete variables.
+ Tip: To facet your plot using a single variable, use #facet_wrap(). Facet wrap syntax is in the function of a formula (kind of like a linear model formula), where the ~ dictates which variable you want to subset your data with. 
+Note: only use #facet_wrap() for discrete variables.
 
 ```{r}
 ggplot(data = mpg) + 
@@ -319,7 +319,7 @@ ggplot(data = mpg) +
  
 ## Exercise 
 ```{r}
-?facet_wrap
+#?facet_wrap
 ```
 nrow/ncol represent the number of rows and columns. We can thus control the number of rows and columns we want our data to be presented in. All other options are outlined in ?facet_wrap.
 
@@ -748,7 +748,7 @@ calculate_coral_mortality(initial_count = 120, surviving_count = 84)
 # kniting for blogging
 library(knitr, markdown)
 knit("Workshop.Rmd") # produces a .md file (use name of your markdown file)
-markdown::html_format("Workshop.md", "workshop.html") # produces clean .html
+#markdown::html_format("Workshop.md", "workshop.html") # produces clean .html
 rmarkdown::render("workshop.Rmd")
 ```
 
