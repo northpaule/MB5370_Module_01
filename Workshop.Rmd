@@ -6,13 +6,13 @@ output: html_document
 ---
 
 # Setting up
-```{r setup, include=FALSE}
+```{r}
 knitr::opts_chunk$set(echo = TRUE)
 setwd("F:/Paule/MB5370/MB5370_Module_01")
 library(tidyverse, ggplot2)
 ```
 
-```{r workshop_01, eval=FALSE, include=FALSE}
+```{r}
 #------------------------
 # MB5370: Introduction to Programming
 # Paule Mathieu
@@ -201,7 +201,7 @@ library(tidyverse) # load into current workspace
 #install.packages("ggplot","tidyr", "earthtones","redlistr","dplyr" ,"terra", "ggplot2")
 library (ggplot2)
 
-?ggplot2
+#?ggplot2
 
 #Class discussion
 # 1. Read the .csv dataset into R.
@@ -234,7 +234,7 @@ library (ggplot2)
 
 ```
 
-```{r sourcing workshop_01, eval=FALSE, include=FALSE}
+```{r}
 #Execute workshop 01 script
 source("Module_01.R")
 ```
@@ -249,7 +249,7 @@ source("Module_01.R")
 This section introduces us to data visualization using R.
 
 ```{r}
-?mpg
+#?mpg
 data = mpg
 ggplot(data = mpg) + # creates a coordinate system
   geom_point(mapping = aes(x = displ, y = hwy)) # adds points to your plot
@@ -510,7 +510,8 @@ Template for general ggplot2:
 
 -----
 # Workshop 03. Reproducible research in marine science ####
-```{r workshop_03, Setting up Git}
+```{r}
+#workshop_03, Setting up Git
 #in terminal: "which git" allows you to verify that Git is installed on your device
 
 #install.packages("usethis")
@@ -519,13 +520,15 @@ Template for general ggplot2:
 #these allow us to check that our Git is linked to our GitHub, it should prompt us to log in using our username and password
 ```
 
-```{r git to github setup}
+```{r}
+# git to github
 library(usethis)
 #use_git_config(user.name = "Paule Mathieu", user.email = "paule.mathieu@my.jcu.edu.au")
 # Token: check your phone
 ```
 
-```{r tracking your own project}
+```{r}
+#tracking your own project
 #usethis::use_git()
 #usethis::use_github()
 
@@ -536,7 +539,7 @@ library(usethis)
 
 # Workshop 04 Using AI in Programming ###
 
-```{r, installing packages}
+```{r}
 #install.packages("ellmer")
 #install.packages("chattr")
 ```
@@ -606,7 +609,8 @@ coral_monitoring <- coral_monitoring %>%
 
 ```
 
-```{r, Task: Environmental Stress Classification}
+```{r}
+#Task: Environmental Stress Classification
 library(dplyr)
 
 marine_stations <- tibble(
@@ -627,7 +631,8 @@ marine_stations
 
 ```
 
-```{r, Base R: for-loops}
+```{r}
+# Base R: for-loops
 # Classic loop anatomy
 for (year in 2020:2024) {
   print(paste("Processing climate data for year:", year))
@@ -641,7 +646,8 @@ for (i in seq_along(transect_lengths)) {
 }
 
 ```
-```{r, Calculating Square Roots of Site Vectors}
+```{r}
+#  Calculating Square Roots of Site Vectors
 #Using a standard for-loop:
 site_areas <- c(144, 400, 625)
 results <- numeric(length(site_areas)) # Must build an empty container first
@@ -660,8 +666,8 @@ iris %>%
   map(~summary(.x))
 
 ```
-```{r, comparing using chattr:}
-
+```{r}
+# comparing using chattr:
 library(purrr) # For map_dbl
 
 # Sample list of fish count data
@@ -705,31 +711,31 @@ calculate_coral_mortality(initial_count = 120, surviving_count = 84)
 ```{r}
 #Custom function construction task
 
-convert_temp_c_to_f <- function(celsius_temp) {
+#convert_temp_c_to_f <- function(celsius_temp) {
   # Absolute zero in Celsius
-  absolute_zero_c <- -273.15
+  #absolute_zero_c <- -273.15
 
   # Conditional safety check
-  if (celsius_temp < absolute_zero_c) {
-    stop("Temperature cannot be below absolute zero (-273.15 degrees Celsius).")
-  }
+ # if (celsius_temp < absolute_zero_c) {
+  #  stop("Temperature cannot be below absolute zero (-273.15 degrees Celsius).")
+  
 
   # Perform the conversion
-  fahrenheit_temp <- (celsius_temp * 9/5) + 32
+  #fahrenheit_temp <- (celsius_temp * 9/5) + 32
 
-  return(fahrenheit_temp)
-}
+  #return(fahrenheit_temp)
+
 ```
 
 
 ```{r}
 # Test with a valid temperature (e.g., 25 degrees Celsius)
-valid_celsius <- 25
-convert_temp_c_to_f(valid_celsius)
+#valid_celsius <- 25
+#convert_temp_c_to_f(valid_celsius)
 # Test with an invalid temperature (e.g., -300 degrees Celsius)
 # This will stop execution and print the error message
-invalid_celsius <- -300
-convert_temp_c_to_f(invalid_celsius)
+#invalid_celsius <- -300
+#convert_temp_c_to_f(invalid_celsius)
 
 #The error code does appear!
 ```
@@ -738,11 +744,11 @@ convert_temp_c_to_f(invalid_celsius)
 
 
 
-
-```{r, kniting for blogging}
-#library(knitr, markdown)
+```{r}
+# kniting for blogging
+library(knitr, markdown)
 knit("Workshop.Rmd") # produces a .md file (use name of your markdown file)
-#markdown::html_format("Workshop.md", "workshop.html", fragment.only=TRUE) # produces clean .html
+markdown::html_format("Workshop.md", "workshop.html") # produces clean .html
 rmarkdown::render("workshop.Rmd")
 ```
 
