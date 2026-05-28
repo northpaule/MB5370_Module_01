@@ -1,0 +1,57 @@
+---
+title: "Copilot Intro"
+author: "Paule Mathieu"
+date: "2026-05-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction ##
+In this document, we will explore the capabilities of Copilot, an AI-powered code assistant developed by OpenAI. Copilot is designed to help developers write code more efficiently by providing suggestions and completing code snippets based on the context of the project.
+
+# Preparing your workspace ##
+
+```{r}
+# Load tidyverse and palmerpenguins libraries
+library(tidyverse)
+#install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+
+# Prompt for a multi-variable scatter plot ##
+
+```{r}
+#create a ggplt scatter plot using the penguins dataset.
+#Plot bill_length_mm on the x-axis and bill_depth_mm on the y-axis.
+#Color the points by species and use geom_point with size 3.
+#Add a minimal theme and lean labels.
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(title = "Scatter Plot of Bill Length vs Bill Depth",
+       x = "Bill Length (mm)",
+       y = "Bill Depth (mm)",
+       color = "Species")
+```
+
+# Open-ended comparative plotting ##
+
+```{r}
+#Generate a scatter plot mapping body_mass_g on the x-axis and flipper_length_mm on the y-axis.
+#Add a linear regression trend line (geom_smooth) for each individual species.
+
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Scatter Plot of Body Mass vs Flipper Length",
+       x = "Body Mass (g)",
+       y = "Flipper Length (mm)",
+       color = "Species")
+```
+
+
