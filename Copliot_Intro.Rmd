@@ -54,4 +54,11 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
        color = "Species")
 ```
 
+```{r}
+# kniting for blogging
+library(knitr, markdown)
+#knit("Workshop.Rmd") # produces a .md file (use name of your markdown file)
+#markdown::html_format("Workshop.md", "workshop.html") # produces clean .html
+#rmarkdown::render("workshop.Rmd")
+```
 
