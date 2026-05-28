@@ -530,8 +530,221 @@ library(usethis)
 #usethis::use_github()
 
 ```
+---
 
- 
+
+
+# Workshop 04 Using AI in Programming ###
+
+```{r, installing packages}
+#install.packages("ellmer")
+#install.packages("chattr")
+```
+
+# Testing prompt
+```{r}
+#this was pasted from "Copy to Document" from my Ctrl + Shift + G shortcut
+library(ggplot2)
+
+data(iris)
+
+ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
+  geom_point()
+```
+
+# Conditional Logic - filtering your data
+
+```{r}
+# Simple Example: Checking Sea Surface Temperature (SST)
+sst <- 30.2
+
+if (sst > 29.5) {
+  print("Warning: Marine heatwave threshold exceeded!")
+} else {
+  print("SST remains within baseline parameters.")
+}
+
+```
+```{r}
+# Load tidyverse (if not already loaded)
+library(tidyverse)
+
+# Sample coral data
+coral_monitoring <- tibble(
+  site = c("Site_A", "Site_B", "Site_C"),
+  depth_m = c(12, 35, 8)
+)
+
+# Classify depth using if_else
+coral_monitoring <- coral_monitoring %>% 
+  mutate(zone = if_else(depth_m > 30, "Deep Reef", "Shallow Reef"))
+
+```
+
+```{r}
+# the mutate() function:
+#I used my Gemini shortcut but can also use #?mutate
+# The mutate() function, part of the dplyr package within the tidyverse, is used to add new variables to a data frame or to transform existing variables. It always returns a new data frame with the modified or newly created columns, keeping all other columns and rows intact.
+
+#To get more information about mutate(), you can use the help function in R:
+
+
+#The %>% symbol (pipe operator)
+#The %>% symbol is the pipe operator, originating from the magrittr package but widely used and re-exported by dplyr and other tidyverse packages. Its primary purpose is to make code more readable and easier to write when chaining multiple operations together. It takes the output of the expression on its left and passes it as the first argument (by default) to the function on its right. This avoids nested function calls and the need to create intermediate objects.
+
+#To get more information about the %>% operator, you can use the help function in R:
+```
+
+```{r}
+coral_monitoring <- coral_monitoring %>% 
+  mutate(reef_category = case_when(
+    depth_m < 10  ~ "Lagoon / Flats",
+    depth_m <= 30 ~ "Crest / Slope",
+    depth_m > 30  ~ "Mesophotic / Deep",
+    TRUE          ~ "Unclassified" # Catch-all remainder
+  ))
+
+```
+
+```{r, Task: Environmental Stress Classification}
+library(dplyr)
+
+marine_stations <- tibble(
+  salinity = c(35, 28, 32, 12)
+)
+
+marine_stations <- marine_stations %>%
+  mutate(
+    environment_type = case_when(
+      salinity < 15 ~ "Estuarine",
+      salinity >= 15 & salinity <= 30 ~ "Brackish",
+      salinity > 30 ~ "Marine",
+      TRUE ~ NA_character_ # Fallback for any unhandled cases (optional)
+    )
+  )
+
+marine_stations
+
+```
+
+```{r, Base R: for-loops}
+# Classic loop anatomy
+for (year in 2020:2024) {
+  print(paste("Processing climate data for year:", year))
+}
+
+# Loop across index sequences
+transect_lengths <- c(50, 100, 25, 75)
+
+for (i in seq_along(transect_lengths)) {
+  print(paste("Transect number", i, "measures", transect_lengths[i], "metres."))
+}
+
+```
+```{r, Calculating Square Roots of Site Vectors}
+#Using a standard for-loop:
+site_areas <- c(144, 400, 625)
+results <- numeric(length(site_areas)) # Must build an empty container first
+
+for(i in seq_along(site_areas)) 
+  results[i] <- sqrt(site_areas[i])
+
+#Using the purrr equivalent:
+library(purrr)
+# Map directly and define your expected output type explicitly
+mapped_results <- map_dbl(site_areas, sqrt)
+
+# Iterate a summary function over split lists of data
+iris %>% 
+  split(.$Species) %>% 
+  map(~summary(.x))
+
+```
+```{r, comparing using chattr:}
+
+library(purrr) # For map_dbl
+
+# Sample list of fish count data
+fish_counts_list <- list(
+  reef_a = c(10, 15, 12, 18, 20),
+  reef_b = c(5, 7, 6, 8, 9),
+  reef_c = c(22, 25, 20, 28, 23)
+)
+
+# Using a for-loop
+mean_counts_for_loop <- numeric(length(fish_counts_list))
+for (i in seq_along(fish_counts_list)) {
+  mean_counts_for_loop[i] <- mean(fish_counts_list[[i]])
+}
+mean_counts_for_loop
+
+#It is in fact much simpler
+
+```
+
+```{r}
+#Function construction blueprint
+
+# Function Definition
+calculate_coral_mortality <- function(initial_count, surviving_count) {
+  
+  # Logic safety switch using our conditional tools!
+  if (initial_count <= 0) {
+    stop("Initial count must be greater than zero.")
+  }
+  
+  mortality_rate <- (initial_count - surviving_count) / initial_count
+  return(mortality_rate)
+}
+
+# Utilizing your custom function
+calculate_coral_mortality(initial_count = 120, surviving_count = 84)
+
+```
+
+```{r}
+#Custom function construction task
+
+convert_temp_c_to_f <- function(celsius_temp) {
+  # Absolute zero in Celsius
+  absolute_zero_c <- -273.15
+
+  # Conditional safety check
+  if (celsius_temp < absolute_zero_c) {
+    stop("Temperature cannot be below absolute zero (-273.15 degrees Celsius).")
+  }
+
+  # Perform the conversion
+  fahrenheit_temp <- (celsius_temp * 9/5) + 32
+
+  return(fahrenheit_temp)
+}
+```
+
+
+```{r}
+# Test with a valid temperature (e.g., 25 degrees Celsius)
+valid_celsius <- 25
+convert_temp_c_to_f(valid_celsius)
+# Test with an invalid temperature (e.g., -300 degrees Celsius)
+# This will stop execution and print the error message
+invalid_celsius <- -300
+convert_temp_c_to_f(invalid_celsius)
+
+#The error code does appear!
+```
+
+
+
+
+
+
+```{r, kniting for blogging}
+#library(knitr, markdown)
+knit("Workshop.Rmd") # produces a .md file (use name of your markdown file)
+#markdown::html_format("Workshop.md", "workshop.html", fragment.only=TRUE) # produces clean .html
+rmarkdown::render("workshop.Rmd")
+```
 
 
 
